@@ -1,11 +1,18 @@
 "use client";
 
-import { Sheet, SheetClose, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { DialogTitle } from "@/components/ui/dialog";
 import { sidebarLinks } from "@/constants";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 
 const MobileNav = () => {
   const pathname = usePathname();
@@ -23,9 +30,12 @@ const MobileNav = () => {
           />
         </SheetTrigger>
         <SheetContent side="left" className="border-none bg-dark-1">
+          <VisuallyHidden>
+            <DialogTitle>Navigation Menu</DialogTitle>
+          </VisuallyHidden>
           <Link href="/" className="flex items-center gap-1">
             <Image
-              src="/icons/logo.svg"
+              src="/icons/zool-logo.svg"
               alt="logo"
               width={32}
               height={32}
@@ -39,7 +49,8 @@ const MobileNav = () => {
               <section className="flex h-full flex-col gap-6 pt-16 text-white">
                 {sidebarLinks.map((link) => {
                   const isActive =
-                    pathname === link.route || pathname.startsWith(`${link.route}/`);
+                    pathname === link.route ||
+                    pathname.startsWith(`${link.route}/`);
                   return (
                     <SheetClose asChild key={link.route}>
                       <Link
