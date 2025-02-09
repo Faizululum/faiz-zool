@@ -35,7 +35,7 @@ const MobileNav = () => {
           </VisuallyHidden>
           <Link href="/" className="flex items-center gap-1">
             <Image
-              src="/icons/zool-logo.svg"
+              src="/icons/zool-logo.png"
               alt="logo"
               width={32}
               height={32}
