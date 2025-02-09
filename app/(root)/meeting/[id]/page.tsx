@@ -3,7 +3,7 @@
 import Loader from "@/components/Loader";
 import MeetingRoom from "@/components/MeetingRoom";
 import MeetingSetup from "@/components/MeetingSetup";
-import { useGetCallById } from "@/hooks/UseGetCallById";
+import { useGetCallById } from "@/hooks/useGetCallById";
 import { useUser } from "@clerk/nextjs";
 import { StreamCall, StreamTheme } from "@stream-io/video-react-sdk";
 import { use, useState } from "react";
@@ -21,7 +21,7 @@ const Meeting = ({ params }: { params: Promise<{ id: string }> }) => {
     <main className="h-screen w-full">
       <StreamCall call={call}>
         <StreamTheme>
-          {!isSetUpComplete ? <MeetingSetup /> : <MeetingRoom />}
+          {!isSetUpComplete ? <MeetingSetup setIsSetUpComplete={setIsSetUpComplete} /> : <MeetingRoom />}
         </StreamTheme>
       </StreamCall>
     </main>
