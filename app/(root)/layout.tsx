@@ -1,5 +1,14 @@
-import StreamVideoProvider from '@/providers/StreamClientProvider'
-import React, { ReactNode } from 'react'
+import StreamVideoProvider from '@/providers/StreamClientProvider';
+import { Metadata } from 'next';
+import { ReactNode } from 'react';
+
+export const metadata: Metadata = {
+  title: "Faiz-Zool",
+  description: "Video Calling App",
+  icons: {
+    icon: "/icons/zool-logo.png",
+  },
+};
 
 const RootLayout = ({ children }: { children: ReactNode }) => {
   return (
