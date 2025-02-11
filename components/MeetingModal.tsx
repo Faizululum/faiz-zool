@@ -15,13 +15,13 @@ interface MeetingModalProps {
     title: string;
     className?: string;
     buttonText?: string;
-    chilren?: ReactNode;
+    children?: ReactNode;
     handleClick?: () => void;
     image?: string;
     buttonIcon?: string;
 }
 
-const MeetingModal = ({ isOpen, onClose, title, className, buttonText, chilren, handleClick, image, buttonIcon }: MeetingModalProps) => {
+const MeetingModal = ({ isOpen, onClose, title, className, buttonText, children, handleClick, image, buttonIcon }: MeetingModalProps) => {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="flex w-full max-w-[520px] flex-col gap-6 border-none bg-dark-1 px-6 py-9 text-white">
@@ -39,7 +39,7 @@ const MeetingModal = ({ isOpen, onClose, title, className, buttonText, chilren, 
           <h1 className={cn('text-3xl font-bold leading-[42px]', className)}>
             {title}
           </h1>
-          {chilren}
+          {children}
           <Button className="bg-blue-1 focus-visible:ring-0 focus-visible:ring-offset-0" onClick={handleClick}>
             {buttonIcon && (
               <Image 
