@@ -59,8 +59,8 @@ const CallList = ({ type }: { type: "upcoming" | "ended" | "recordings" }) => {
           .flatMap(call => call.recordings)
   
         setRecordings(recordings);
-      } catch (error) {
-        toast({ title: "Try again later" })        
+      } catch {
+        toast({ title: "Try again later" });  
       }
     }
 
@@ -84,7 +84,7 @@ const CallList = ({ type }: { type: "upcoming" | "ended" | "recordings" }) => {
               ? "/icons/upcoming.svg"
               : "/icons/recordings.svg"
           }
-          title={(meeting as Call).state?.custom.description.substring(0, 25) || meeting.filename.substring(0, 20) || "No Title"}
+          title={(meeting as Call).state?.custom?.description?.substring(0, 25) || meeting?.filename?.substring(0, 20) || "Personal Meeting"}
           date={meeting.state?.startsAt.toLocaleString() || meeting.start_time.toLocaleString()}
           isPreviousMeeting={type === "ended"}
           buttonIcon1={type === "recordings" ? "/icons/play.svg" : undefined}
