@@ -74,7 +74,7 @@ const CallList = ({ type }: { type: "upcoming" | "ended" | "recordings" }) => {
   <div className="grid grid-cols-1 gap-5 xl:grid-cols-2">
     {calls && calls.length > 0 ? calls.map((meeting: Call | CallRecording) => (
         <MeetingCard 
-          key={(meeting as Call).id || `meeting-${meeting.id}`}
+          key={(meeting as Call).id}
           icon={
             type === "ended"
               ? "/icons/previous.svg"
