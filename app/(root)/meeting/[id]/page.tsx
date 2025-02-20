@@ -10,7 +10,7 @@ import { use, useState } from "react";
 
 const Meeting = ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = use(params);
-  const { user, isLoaded } = useUser();
+  const { isLoaded } = useUser();
   const [isSetUpComplete, setIsSetUpComplete] = useState(false);
 
   const { call, isCallLoading } = useGetCallById(id);

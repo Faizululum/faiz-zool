@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 "use client";
 
 import { useGetCalls } from "@/hooks/useGetCalls";
@@ -65,7 +63,7 @@ const CallList = ({ type }: { type: "upcoming" | "ended" | "recordings" }) => {
     }
 
     if (type === "recordings") fetchRecordings();
-  }, [type, callRecordings]);
+  }, [type, callRecordings, toast]);
 
   const calls = getCalls();
   const noCallsMessage = getNoCallsMessage();
@@ -84,13 +82,28 @@ const CallList = ({ type }: { type: "upcoming" | "ended" | "recordings" }) => {
               ? "/icons/upcoming.svg"
               : "/icons/recordings.svg"
           }
-          title={(meeting as Call).state?.custom?.description?.substring(0, 25) || meeting?.filename?.substring(0, 20) || "Personal Meeting"}
-          date={meeting.state?.startsAt.toLocaleString() || meeting.start_time.toLocaleString()}
-          isPreviousMeeting={type === "ended"}
-          buttonIcon1={type === "recordings" ? "/icons/play.svg" : undefined}
-          handleClick={type === "recordings" ? () => router.push(`${meeting.url}`) : () => router.push(`/meeting/${meeting.id}`)}
-          link={type === "recordings" ? meeting.url : `${process.env.NEXT_PUBLIC_BASE_URL}/meeting/${meeting.id}`}
-          buttonText={type === "recordings" ? "Play" : "Start"}
+          title={
+            (meeting as Call).state?.custom?.description ||
+            (meeting as CallRecording).filename?.substring(0, 20) ||
+            'No Description'
+          }
+          date={
+            (meeting as Call).state?.startsAt?.toLocaleString() ||
+            (meeting as CallRecording).start_time?.toLocaleString()
+          }
+          isPreviousMeeting={type === 'ended'}
+          link={
+            type === 'recordings'
+              ? (meeting as CallRecording).url
+              : `${process.env.NEXT_PUBLIC_BASE_URL}/meeting/${(meeting as Call).id}`
+          }
+          buttonIcon1={type === 'recordings' ? '/icons/play.svg' : undefined}
+          buttonText={type === 'recordings' ? 'Play' : 'Start'}
+          handleClick={
+            type === 'recordings'
+              ? () => router.push(`${(meeting as CallRecording).url}`)
+              : () => router.push(`/meeting/${(meeting as Call).id}`)
+          }
         />
     )) : (
         <h1>{noCallsMessage}</h1>

@@ -24,7 +24,7 @@ const MeetingTypeList = () => {
   const [callDetails, setCallDetails] = useState<Call>()
   const { toast } = useToast();
 
-  // const faiz = "test";
+  // const faiz = "fai-zul-um";
 
   const createMeeting = async () => {
     if (!client || !user) return;
